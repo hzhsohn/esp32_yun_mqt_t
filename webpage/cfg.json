@@ -1,0 +1,24 @@
+{
+
+"apssid": "Hx-KongMiniT_",
+"apssid_password": "",
+"is_wifi_start": 1,
+
+"devname": "MiniT-",
+"devflag": "MiniT",
+
+
+"mqtt_host": "192.168.100.1",
+"mqtt_port": 1883,
+"yun_host": "iot.d.hx-kong.com",
+"yun_port": 9004,
+"tcpserv1_port":1001,
+"uart1_baudRate":9600,
+"is_mqtt_start": 1,
+"is_yun_start": 0,
+
+
+"tcpserv2_port":1002,
+"uart2_baudRate":9600
+
+}
