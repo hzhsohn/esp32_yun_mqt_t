@@ -8,6 +8,9 @@
 bool isUart2Enable=false;
 PF_UART_READ2* g_pfUart2Read=NULL;
 
+int ECHO_UART_RXD2 = GPIO_NUM_14;
+int ECHO_UART_TXD2 = GPIO_NUM_15;
+
 void task_uart2()
 {
 	printf("task_uart2 thread run...\n");
@@ -42,13 +45,20 @@ int uart2_send( const char * data, int len)
 	return 0;
 }
 
-void uart2_init(PF_UART_READ2*pf , int baud_rate)
+void uart2_init(PF_UART_READ2*pf , int baud_rate,int io_rx,int io_tx)
 {
 	if(baud_rate<=0)
 	{
 		return;
 	}
-
+	if(io_rx>0)
+	{
+		ECHO_UART_RXD2  = io_rx;
+	}
+	if(io_tx>0)
+	{
+		ECHO_UART_TXD2  = io_tx;
+	}
 	g_pfUart2Read=pf;
 
     uart_config_t uart_config = {
@@ -60,7 +70,7 @@ void uart2_init(PF_UART_READ2*pf , int baud_rate)
     };
 
     uart_param_config(UART_NUM_2, &uart_config);
-    uart_set_pin(UART_NUM_2, ECHO_TEST_TXD2, ECHO_TEST_RXD2, ECHO_TEST_RTS2, ECHO_TEST_CTS2);
+    uart_set_pin(UART_NUM_2, ECHO_UART_TXD2, ECHO_UART_RXD2, ECHO_TEST_RTS2, ECHO_TEST_CTS2);
     uart_driver_install(UART_NUM_2, BUF_SIZE2 , 0, 0, NULL, 0);
 
 	isUart2Enable=true;

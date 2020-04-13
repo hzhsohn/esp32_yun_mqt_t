@@ -27,6 +27,13 @@ typedef struct _TagCfgData{
 	char staPassword[34];
 	int uart1_baudRate;
 	int uart2_baudRate;
+
+	//
+	int uart1_rx;
+	int uart1_tx;
+	int uart2_rx;
+	int uart2_tx;
+
 	//TCP服务器的端口
 	int tcpserv1_port;
 	int tcpserv2_port;

@@ -22,14 +22,12 @@
  * - Event queue: off
  * - Pin assignment: see defines below
  */
-//#define ECHO_TEST_RXD  (GPIO_NUM_16)
-//#define ECHO_TEST_RXD  (GPIO_NUM_5)
-//#define ECHO_TEST_TXD  (GPIO_NUM_17)
-//#define ECHO_TEST_RXD  (GPIO_NUM_14)
-//#define ECHO_TEST_TXD  (GPIO_NUM_15)
+//#define ECHO_UART1_RXD  (GPIO_NUM_16)
+//#define ECHO_UART1_RXD  (GPIO_NUM_5)
+//#define ECHO_UART1_TXD  (GPIO_NUM_17)
+//#define ECHO_UART1_RXD  (GPIO_NUM_14)
+//#define ECHO_UART1_TXD  (GPIO_NUM_15)
 
-#define ECHO_TEST_RXD  (GPIO_NUM_5)
-#define ECHO_TEST_TXD  (GPIO_NUM_17)
 #define ECHO_TEST_RTS  (UART_PIN_NO_CHANGE)
 #define ECHO_TEST_CTS  (UART_PIN_NO_CHANGE)
 
@@ -39,5 +37,5 @@ typedef void PF_UART_READ (const char *buf, int len);
 
 //-----------------------------------------------------------------
 int uart1_send( const char * data, int len);
-void uart1_init(PF_UART_READ*pf , int baud_rate);
+void uart1_init(PF_UART_READ*pf , int baud_rate,int io_rx,int io_tx);
 void task_uart1();

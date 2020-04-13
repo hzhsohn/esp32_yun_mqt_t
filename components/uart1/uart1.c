@@ -8,6 +8,10 @@
 bool isUart1Enable=false;
 PF_UART_READ* g_pfUartRead=NULL;
 
+
+int ECHO_UART1_RXD  = GPIO_NUM_5;
+int ECHO_UART1_TXD  = GPIO_NUM_17;
+
 void task_uart1()
 {
 	printf("task_uart1 thread run...\n");
@@ -41,12 +45,21 @@ int uart1_send( const char * data, int len)
 	}
 	return 0;
 }
-void uart1_init(PF_UART_READ*pf , int baud_rate)
+void uart1_init(PF_UART_READ*pf , int baud_rate,int io_rx,int io_tx)
 {
 	if(baud_rate<=0)
 	{
 		return;
 	}
+	if(io_rx>0)
+	{
+		ECHO_UART1_RXD  = io_rx;
+	}
+	if(io_tx>0)
+	{
+		ECHO_UART1_TXD  = io_tx;
+	}
+
 	g_pfUartRead=pf;
 
     uart_config_t uart_config = {
@@ -58,7 +71,7 @@ void uart1_init(PF_UART_READ*pf , int baud_rate)
     };
 
     uart_param_config(UART_NUM_1, &uart_config);
-    uart_set_pin(UART_NUM_1, ECHO_TEST_TXD, ECHO_TEST_RXD, ECHO_TEST_RTS, ECHO_TEST_CTS);
+    uart_set_pin(UART_NUM_1, ECHO_UART1_TXD, ECHO_UART1_RXD, ECHO_TEST_RTS, ECHO_TEST_CTS);
     uart_driver_install(UART_NUM_1, BUF_SIZE, 0, 0, NULL, 0);
 
 	isUart1Enable=true;

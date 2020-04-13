@@ -34,6 +34,17 @@ void initFactoryCfgFlash()
 			cfgdata.uart1_baudRate=jsonVal->valueint;
 			jsonVal=cJSON_GetObjectItem(json,"uart2_baudRate");
 			cfgdata.uart2_baudRate=jsonVal->valueint;
+
+			jsonVal=cJSON_GetObjectItem(json,"uart1_rx");
+			cfgdata.uart1_rx=jsonVal->valueint;
+			jsonVal=cJSON_GetObjectItem(json,"uart1_tx");
+			cfgdata.uart1_tx=jsonVal->valueint;
+
+			jsonVal=cJSON_GetObjectItem(json,"uart2_rx");
+			cfgdata.uart2_rx=jsonVal->valueint;
+			jsonVal=cJSON_GetObjectItem(json,"uart2_tx");
+			cfgdata.uart2_tx=jsonVal->valueint;
+
 			//
 			uint8_t mac_addr[12]={0};
 			esp_read_mac(mac_addr, ESP_MAC_WIFI_SOFTAP);

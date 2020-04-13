@@ -233,12 +233,12 @@ void app_main()
 	xTaskCreate(task_uart_debug, "uart_dbg_task", 4*1024, NULL, 4, NULL);
 
 	printf("uart1 init...baudRate=%d\n",pCfgdata->uart1_baudRate);
-	uart1_init(uart1_read , pCfgdata->uart1_baudRate);
+	uart1_init(uart1_read , pCfgdata->uart1_baudRate,pCfgdata->uart1_rx,pCfgdata->uart1_tx);
 	uart485Init();
 	xTaskCreate(task_uart1, "tag_uart1_task", 4*1024, NULL, 4, NULL);
 	
 	printf("uart2 init...baudRate=%d\n",pCfgdata->uart2_baudRate);
-	uart2_init(uart2_read , pCfgdata->uart2_baudRate);
+	uart2_init(uart2_read , pCfgdata->uart2_baudRate,pCfgdata->uart2_rx,pCfgdata->uart2_tx);
 	xTaskCreate(task_uart2, "tag_uart2_task", 4*1024, NULL, 4, NULL);
 	
 	printf("web init...port=%d\n",80);
