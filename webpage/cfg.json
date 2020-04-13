@@ -7,10 +7,10 @@
 "devname": "MiniT-",
 "devflag": "MiniT",
 
-"uart1_rx":5
-"uart1_tx":17
-"uart2_rx":14
-"uart2_tx":15
+"uart1_rx":5,
+"uart1_tx":17,
+"uart2_rx":14,
+"uart2_tx":15,
 
 "mqtt_host": "192.168.100.1",
 "mqtt_port": 1883,

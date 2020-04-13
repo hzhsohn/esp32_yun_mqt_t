@@ -2,7 +2,7 @@
 #define __ZH_CFG__H__
 
 //
-#define INIT_HARDWARE_FLAG			1211112
+#define INIT_HARDWARE_FLAG			1211113
 //Êý¾Ý´¢´æÎ»ÖÃ
 #define SECTOR_CFG_DATA			400		//0x190000
 #define SECTOR_CFG_JSON			511		//0x1FF000
