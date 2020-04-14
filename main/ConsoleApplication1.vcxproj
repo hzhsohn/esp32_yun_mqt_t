@@ -49,7 +49,6 @@
     <ClCompile Include="..\components\zhlist\zhlist_exp.c" />
     <ClCompile Include="cfg.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="mqtt_net_proc.c" />
     <ClCompile Include="sbufhex.c" />
     <ClCompile Include="scene_proc.c" />
     <ClCompile Include="smartconfig.c" />
@@ -97,7 +96,6 @@
     <ClInclude Include="..\components\zhlist\include\zhlist.h" />
     <ClInclude Include="..\components\zhlist\include\zhlist_exp.h" />
     <ClInclude Include="cfg.h" />
-    <ClInclude Include="mqtt_net_proc.h" />
     <ClInclude Include="sbufhex.h" />
     <ClInclude Include="scene_proc.h" />
     <ClInclude Include="smartconfig.h" />

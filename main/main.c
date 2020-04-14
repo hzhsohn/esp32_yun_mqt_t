@@ -49,7 +49,6 @@
 #include "spi_data.h"
 #include "scene_proc.h"
 #include "wifi.h"
-#include "mqtt_net_proc.h"
 #include "tcpserv.h"
 #include "tcpserv2.h"
 #include "hxkong_yun.h"

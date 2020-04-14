@@ -186,9 +186,6 @@
     <ClCompile Include="..\components\tcpserv\tcpserv.c">
       <Filter>components\tcpserv</Filter>
     </ClCompile>
-    <ClCompile Include="mqtt_net_proc.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\components\tcpserv2\tcpserv2.c">
       <Filter>components\tcpserv2</Filter>
     </ClCompile>
@@ -325,9 +322,6 @@
     </ClInclude>
     <ClInclude Include="..\components\tcpserv\include\tcpserv.h">
       <Filter>components\tcpserv</Filter>
-    </ClInclude>
-    <ClInclude Include="mqtt_net_proc.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="..\components\tcpserv2\include\tcpserv2.h">
       <Filter>components\tcpserv2</Filter>

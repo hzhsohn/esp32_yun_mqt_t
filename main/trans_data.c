@@ -8,7 +8,6 @@
 #include "websocket.h"
 #include "sbufhex.h"
 #include "zhlist_exp.h"
-#include "mqtt_net_proc.h"
 #include "tcpserv.h"
 #include "tcpserv2.h"
 #include "zhHttp.h"
@@ -272,6 +271,12 @@ void uart_debug_read(const char *buf, int len)
 	}
 }
 
+//云接收
+void yun_recv(const char *buf, int len)
+{
+	uart1485Send((char*)buf,len);
+}
+
 //串口1为485口
 void uart1_read(const char *buf, int len)
 {
@@ -314,10 +319,7 @@ void tcpserv2_read(const char *buf, int len)
 
 //串口1 经过延时缓冲的数据内容
 void uart1485Recv_cb(unsigned char*buf,int len)
-{	
-	char* ssmbuf=NULL;
-	ssmbuf=(char*)malloc(128+len*2);
-
+{
 	printf("receive 485 frame > len=%d > ",len);
 	print16((char*)buf,len);
 	printf("\n");
@@ -326,19 +328,11 @@ void uart1485Recv_cb(unsigned char*buf,int len)
 	//发送到MQTT网络
 	printf("publish = %s\n",g_msdA_pub);
 	
-	int dstLen=0;
-	char* psbuf=sbufEncode(buf,len,&dstLen);
-	sprintf(ssmbuf,"{\"cmd\":\"lbus\",\"relation\":{\"sbuf\":\"%s\"}}",psbuf);
-	free(psbuf);
-	printf("len=%d >> %s \n",dstLen,ssmbuf);
 	if(g_mqttClient)
 	{
 		//发送场景控制
-		esp_mqtt_client_publish(g_mqttClient, g_msdA_pub,ssmbuf, strlen(ssmbuf), 0, 0);
+		esp_mqtt_client_publish(g_mqttClient, g_msdA_pub,( const char *)buf, len, 0, 0);
 	}
-
-	free(ssmbuf);
-	ssmbuf=NULL;
 
 	//----------------------------------------------------
 	//转发至websocket页面上
@@ -365,12 +359,6 @@ void udp_read(const char *data, int len)
 				}
 	}
 
-}
-
-//云接收
-void yun_recv(const char *buf, int len)
-{
-	
 }
 
 void cmd_setmqtt(char* commandline)
@@ -476,7 +464,7 @@ void mqtt_proc_data(esp_mqtt_client_handle_t client,char* topic,int topic_len,ch
 	{
 		//一般通讯数据
 		printf("mqtt_proc_data=%.*s >> %.*s\r\n", topic_len, topic,len,buf);
-		mqttNetData(buf,len);
+		uart1485Send((char*)buf,len);
 	}
 }
 
